@@ -42,7 +42,7 @@ class OrderViewModel : ViewModel() {
         val options = mutableListOf<String>()
         val formatter = SimpleDateFormat("EEE MMM d", Locale.getDefault())
         val calendar = Calendar.getInstance()
-
+        // Create a list of dates starting with the current date and the following 3 dates
         repeat(4) {
             options.add(formatter.format(calendar.time))
             calendar.add(Calendar.DATE, 1)
