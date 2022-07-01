@@ -24,7 +24,10 @@
         <variable
             name="viewModel"
             type="com.example.cupcake.model.OrderViewModel" />
-        
+
+        <variable
+            name="flavorFragment"
+            type="com.example.cupcake.FlavorFragment" />
     </data>
 
     <ScrollView
@@ -101,9 +104,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/side_margin"
+                android:textAppearance="@style/TextAppearance.Cupcake.Subtitle1"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider"
-                tools:text="Subtotal $5.00" />
+                tools:text="@{@string/subtotal_price(viewModel.price)}"
+                tools:visibility="visible" />
 
             <Button
                 android:id="@+id/next_button"
@@ -114,7 +120,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/subtotal" />
+                app:layout_constraintTop_toBottomOf="@id/subtotal"
+                android:onClick="@{() -> flavorFragment.goToNextScreen()}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

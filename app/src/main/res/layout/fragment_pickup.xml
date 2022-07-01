@@ -25,6 +25,9 @@
             name="viewModel"
             type="com.example.cupcake.model.OrderViewModel" />
 
+        <variable
+            name="pickupFragment"
+            type="com.example.cupcake.PickupFragment" />
     </data>
 
     <ScrollView
@@ -48,33 +51,33 @@
                     android:id="@+id/option0"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="@string/thursday"
-                    android:checked="@{viewModel.date.equals(@string/thursday)}"
-                    android:onClick="@{() -> viewModel.setDate(@string/thursday)}"/>
+                    tools:text="@{viewModel.dateOptions[0]}"
+                    android:checked="@{viewModel.date.equals(viewModel.dateOptions[0])}"
+                    android:onClick="@{() -> viewModel.setDate(viewModel.dateOptions[0])}"/>
 
                 <RadioButton
                     android:id="@+id/option1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="@string/friday"
-                    android:checked="@{viewModel.date.equals(@string/friday)}"
-                    android:onClick="@{() -> viewModel.setDate(@string/friday)}"/>
+                    tools:text="@{viewModel.dateOptions[1]}"
+                    android:checked="@{viewModel.date.equals(viewModel.dateOptions[1])}"
+                    android:onClick="@{() -> viewModel.setDate(viewModel.dateOptions[1])}"/>
 
                 <RadioButton
                     android:id="@+id/option2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="@string/saturday"
-                    android:checked="@{viewModel.date.equals(@string/saturday)}"
-                    android:onClick="@{() -> viewModel.setDate(@string/saturday)}" />
+                    tools:text="@{viewModel.dateOptions[2]}"
+                    android:checked="@{viewModel.date.equals(viewModel.dateOptions[2])}"
+                    android:onClick="@{() -> viewModel.setDate(viewModel.dateOptions[2])}"/>
 
                 <RadioButton
                     android:id="@+id/option3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="@string/sunday"
-                    android:checked="@{viewModel.date.equals(@string/sunday)}"
-                    android:onClick="@{() -> viewModel.setDate(@string/sunday)}" />
+                    tools:text="@{viewModel.dateOptions[3]}"
+                    android:checked="@{viewModel.date.equals(viewModel.dateOptions[3])}"
+                    android:onClick="@{() -> viewModel.setDate(viewModel.dateOptions[3])}"/>
             </RadioGroup>
 
             <View
@@ -94,9 +97,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/side_margin"
+                android:textAppearance="@style/TextAppearance.Cupcake.Subtitle1"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider"
-                tools:text="Subtotal $5.00" />
+                tools:text="@{@string/subtotal_price(viewModel.price)}"
+                tools:visibility="visible" />
 
             <Button
                 android:id="@+id/next_button"
@@ -107,7 +113,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/subtotal" />
+                app:layout_constraintTop_toBottomOf="@id/subtotal"
+                android:onClick="@{() -> pickupFragment.goToNextScreen()}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
